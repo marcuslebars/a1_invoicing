@@ -7,7 +7,7 @@ type AuthCtx = {
   user: User;
   loading: boolean;
   login: (u: string, p: string) => Promise<void>;
-  logout: () => Promise<void>;
+  logout: () => void;
   refresh: () => Promise<void>;
 };
 
