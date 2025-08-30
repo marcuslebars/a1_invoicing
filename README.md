@@ -29,7 +29,7 @@ DB: postgres:5432
   - Auth endpoints:
     - POST /api/auth/login/ { username, password } (session cookie; CSRF not required for login)
     - GET /api/auth/me/ (requires session)
-    - POST /api/auth/logout/ (requires session)
+    - POST /api/auth/logout/ (requires session; CSRF not required)
 
 - Frontend
   - cd frontend

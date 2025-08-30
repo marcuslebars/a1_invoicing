@@ -81,6 +81,7 @@ def login_view(request):
 
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
+@csrf_exempt
 def logout_view(request):
     logout(request)
     return Response({"detail": "logged out"})
