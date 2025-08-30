@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -68,7 +68,7 @@ def dashboard_metrics(request):
 
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])
-@ensure_csrf_cookie
+@csrf_exempt
 def login_view(request):
     username = request.data.get("username")
     password = request.data.get("password")
