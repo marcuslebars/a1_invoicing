@@ -29,6 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    api.ensureCsrf().catch(() => {});
     refresh();
   }, [refresh]);
 

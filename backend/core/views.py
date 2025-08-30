@@ -64,6 +64,12 @@ def dashboard_metrics(request):
     total_revenue = Payment.objects.aggregate(s=Sum("amount"))["s"] or 0
     outstanding = Invoice.objects.filter(~Q(status="paid")).aggregate(s=Sum("total"))["s"] or 0
     return Response({"total_revenue": total_revenue, "outstanding": outstanding})
+@api_view(["GET"])
+@permission_classes([permissions.AllowAny])
+@ensure_csrf_cookie
+def csrf(request):
+    return Response({"detail": "ok"})
+
 
 
 @csrf_exempt
