@@ -66,9 +66,9 @@ def dashboard_metrics(request):
     return Response({"total_revenue": total_revenue, "outstanding": outstanding})
 
 
+@csrf_exempt
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])
-@csrf_exempt
 def login_view(request):
     username = request.data.get("username")
     password = request.data.get("password")
@@ -79,9 +79,9 @@ def login_view(request):
     return Response({"id": user.id, "username": user.username, "is_staff": user.is_staff, "is_superuser": user.is_superuser})
 
 
+@csrf_exempt
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
-@csrf_exempt
 def logout_view(request):
     logout(request)
     return Response({"detail": "logged out"})
