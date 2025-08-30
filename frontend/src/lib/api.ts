@@ -22,8 +22,12 @@ export const api = {
   me: () => request('/auth/me/'),
   clients: {
     list: () => request('/clients/'),
+    create: (payload: { name: string; email?: string; address?: string; billing_details?: string; notes?: string }) =>
+      request('/clients/', { method: 'POST', body: JSON.stringify(payload) }),
   },
   invoices: {
     list: () => request('/invoices/'),
+    create: (payload: any) =>
+      request('/invoices/', { method: 'POST', body: JSON.stringify(payload) }),
   },
 };
