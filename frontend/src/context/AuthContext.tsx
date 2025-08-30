@@ -38,9 +38,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [refresh]);
 
   const logout = useCallback(async () => {
-    await api.logout();
-    setUser(null);
-  }, []);
+    try {
+      await api.logout();
+    } catch {
+    } finally {
+      setUser(null);
+      try {
+        await refresh();
+      } catch {}
+    }
+  }, [refresh]);
 
   return (
     <Ctx.Provider value={{ user, loading, login, logout, refresh }}>
