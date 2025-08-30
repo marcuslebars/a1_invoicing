@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from rest_framework import viewsets, permissions, filters, status
-from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.decorators import action, api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 
 from weasyprint import HTML
@@ -69,6 +69,7 @@ def dashboard_metrics(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])
+@authentication_classes([])
 def login_view(request):
     username = request.data.get("username")
     password = request.data.get("password")
@@ -82,6 +83,7 @@ def login_view(request):
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes([permissions.IsAuthenticated])
+@authentication_classes([])
 def logout_view(request):
     logout(request)
     return Response({"detail": "logged out"})
