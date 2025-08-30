@@ -43,11 +43,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
     } finally {
       setUser(null);
-      try {
-        await refresh();
-      } catch {}
     }
-  }, [refresh]);
+  }, []);
 
   return (
     <Ctx.Provider value={{ user, loading, login, logout, refresh }}>
